@@ -1,0 +1,14 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: rinha
+      RABBITMQ_DEFAULT_PASS: rinha
+    healthcheck:
+      test: ["CMD", "rabbit-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
